@@ -1,0 +1,149 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "PL/Swift Documentation\n\n\nPL/Swift\n allows you to write custom SQL functions and types\nfor the\n\nPostgreSQL\n database server\nin the \n\nSwift\n\nprogramming language.\n\n\nWhat is an PostgreSQL extension?\n\n\nThe PostgreSQL database server is quite modular and can be extended with\ncustom SQL functions and custom SQL types.\n\n\nSuch extensions can be written in PSQL itself,\nin scripting languages such as Python or TCL,\nand in plain C.\n\n\nTODO: write more", 
+            "title": "Introduction"
+        }, 
+        {
+            "location": "/#plswift-documentation", 
+            "text": "PL/Swift  allows you to write custom SQL functions and types\nfor the PostgreSQL  database server\nin the  Swift \nprogramming language.", 
+            "title": "PL/Swift Documentation"
+        }, 
+        {
+            "location": "/#what-is-an-postgresql-extension", 
+            "text": "The PostgreSQL database server is quite modular and can be extended with\ncustom SQL functions and custom SQL types.  Such extensions can be written in PSQL itself,\nin scripting languages such as Python or TCL,\nand in plain C.  TODO: write more", 
+            "title": "What is an PostgreSQL extension?"
+        }, 
+        {
+            "location": "/install/", 
+            "text": "PL/Swift Installation\n\n\nPL/Swift should install fine on pretty much any Unix system that can run\nPostgreSQL. Including exotic setups like Raspberry Pi systems.\n\n\nWe also provide a macOS Homebrew tap which makes it really easy to install\nPL/Swift and its dependencies on macOS. We highly recommend that over a\ncustom install.\n\n\nOn the Linux side we test w/ Ubuntu Trusty and Xenial, though it should work\npretty much anywhere.\n\n\nInstall on macOS using Homebrew\n\n\nGot no Homebrew? \nGet it!\n\n\nThen add the PL/Swift tap and install plswift:\n\n\nbrew tap PL-Swift/plswift\nbrew install plswift\n\n\n\nInstall on Linux (or macOS w/o Homebrew)\n\n\nOn macOS: We strongly advise that you rather use Homebrew, more importantly\n          the Apache provided by Homebrew.\n\n\nUbuntu packages required (assuming you have Swift 3 installed already), this includes\nthe PostgreSQL and SQLite3 database adaptors, add additional ones as desired:\n\n\nsudo apt-get update\nsudo apt-get install \\\n   curl pkg-config\n\n\n\nTODO: test \n add actual packages required\n\n\nInstall PL/Swift:\n\n\ncurl -L -o plswift.tgz \\\n     https://github.com/PL-Swift/plswift/archive/0.0.4.tar.gz\ntar zxf plswift.tgz \n cd plswift-0.0.4\nmake\nsudo make install\n\n\n\nThat puts PL/Swift into \n/usr/local\n. If you want to have it in \n/usr\n, do:\n\n\nsudo make prefix=/usr install\n\n\n\nCheck whether the installation is OK\n\n\nYou can call \nswift pl validate\n to make sure the installation is OK:\n\n\nThe Swift PostgreSQL build environment looks sound.\n\n  srcroot:   /Users/helge/dev/Swift/PLSwift/PLSwift\n  module:    PLSwift\n  config:    debug\n  product:   /Users/helge/dev/Swift/PLSwift/PLSwift/.build/PLSwift.so\n  version:   \n  sql-setup: \n  pg_config: /Applications/Postgres.app/Contents/Versions/9.4/bin/pg_config\n  moddir:    /Applications/Postgres.app/Contents/Versions/9.4/lib/postgresql\n  extdir:    /Applications/Postgres.app/Contents/Versions/9.4/share/postgresql/extension/\n  PL/Swift:  /usr/local\n  swift:     4.0.3\n\nERROR: Missing extension control file: PLSwift.control\nERROR: Missing setup file:\n\n\n\n(you can ignore the ERRORs at the bottom, they are only relevant within\n extensions)\n\n\nTroubleshooting\n\n\nIf something isn't working in a Homebrew setup, check whether:\n\n\nbrew doctor\n\n\n\noutputs anything unusual.\n\n\nIf you need any help, feel free to ask on the\n\nMailing List\n\nor our\n\nSlack channel\n.", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/install/#plswift-installation", 
+            "text": "PL/Swift should install fine on pretty much any Unix system that can run\nPostgreSQL. Including exotic setups like Raspberry Pi systems.  We also provide a macOS Homebrew tap which makes it really easy to install\nPL/Swift and its dependencies on macOS. We highly recommend that over a\ncustom install.  On the Linux side we test w/ Ubuntu Trusty and Xenial, though it should work\npretty much anywhere.", 
+            "title": "PL/Swift Installation"
+        }, 
+        {
+            "location": "/install/#install-on-macos-using-homebrew", 
+            "text": "Got no Homebrew?  Get it!  Then add the PL/Swift tap and install plswift:  brew tap PL-Swift/plswift\nbrew install plswift", 
+            "title": "Install on macOS using Homebrew"
+        }, 
+        {
+            "location": "/install/#install-on-linux-or-macos-wo-homebrew", 
+            "text": "On macOS: We strongly advise that you rather use Homebrew, more importantly\n          the Apache provided by Homebrew.  Ubuntu packages required (assuming you have Swift 3 installed already), this includes\nthe PostgreSQL and SQLite3 database adaptors, add additional ones as desired:  sudo apt-get update\nsudo apt-get install \\\n   curl pkg-config  TODO: test   add actual packages required  Install PL/Swift:  curl -L -o plswift.tgz \\\n     https://github.com/PL-Swift/plswift/archive/0.0.4.tar.gz\ntar zxf plswift.tgz   cd plswift-0.0.4\nmake\nsudo make install  That puts PL/Swift into  /usr/local . If you want to have it in  /usr , do:  sudo make prefix=/usr install", 
+            "title": "Install on Linux (or macOS w/o Homebrew)"
+        }, 
+        {
+            "location": "/install/#check-whether-the-installation-is-ok", 
+            "text": "You can call  swift pl validate  to make sure the installation is OK:  The Swift PostgreSQL build environment looks sound.\n\n  srcroot:   /Users/helge/dev/Swift/PLSwift/PLSwift\n  module:    PLSwift\n  config:    debug\n  product:   /Users/helge/dev/Swift/PLSwift/PLSwift/.build/PLSwift.so\n  version:   \n  sql-setup: \n  pg_config: /Applications/Postgres.app/Contents/Versions/9.4/bin/pg_config\n  moddir:    /Applications/Postgres.app/Contents/Versions/9.4/lib/postgresql\n  extdir:    /Applications/Postgres.app/Contents/Versions/9.4/share/postgresql/extension/\n  PL/Swift:  /usr/local\n  swift:     4.0.3\n\nERROR: Missing extension control file: PLSwift.control\nERROR: Missing setup file:  (you can ignore the ERRORs at the bottom, they are only relevant within\n extensions)", 
+            "title": "Check whether the installation is OK"
+        }, 
+        {
+            "location": "/install/#troubleshooting", 
+            "text": "If something isn't working in a Homebrew setup, check whether:  brew doctor  outputs anything unusual.  If you need any help, feel free to ask on the Mailing List \nor our Slack channel .", 
+            "title": "Troubleshooting"
+        }, 
+        {
+            "location": "/usage/", 
+            "text": "Hello World\n\n\nBut lets do a simple \nbase36\n module for demonstration purposes.\n\n\nSetup Module\n\n\nSetup a new directory and initialize it as an PostgreSQL extension:\n\n\n$ mkdir base36 \n cd base36\n$ swift pl init\nThe Swift PostgreSQL build environment looks sound.\n\n  module:    base36\n  config:    debug\n  product:   /Users/helge/trump/base36/.build/base36.so\n  pg_config: /Applications/Postgres.app/Contents/Versions/9.4/bin/pg_config\n  PL/Swift:  /usr/local\n\n\n\n\nThis creates a Swift Package Manager module and places relevant extension\nfiles into it:\n\n\n$ tree\n.\n\u251c\u2500\u2500 Package.swift\n\u251c\u2500\u2500 Sources\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 base36-ext.swift\n\u2502\u00a0\u00a0 \u2514\u2500\u2500 base36.swift\n\u251c\u2500\u2500 base36--0.0.1.sql\n\u2514\u2500\u2500 base36.control\n\n1 directory, 5 files\n\n\n\n\nThe \nPackage.swift\n just loads the PL/Swift wrapper module we provide:\n\n\nimport PackageDescription\n\nlet package = Package(\n    name: \nbase36\n,\n\n    dependencies: [\n      .Package(url: \nhttps://github.com/PL-Swift/PLSwift.git\n, \n               majorVersion: 0)\n    ]\n)\n\n\n\n\nThe \nbase36.swift\n source file contains a a sample Swift SQL function. The\nfile can be named anything (but main.swift, which would produce a tool instead\nof a library ;-)\n\n\nimport Foundation\n\nfunc hello() -\n String {\n  return \nHello Schwifty World!\n\n}\n\n\n\n\nThe \nbase36-ext.swift\n file contains all the boilerplate to export the\nSwift function towards PostgreSQL:\n\n\nimport Foundation\nimport CPLSwift\nimport PLSwift\n\n// MARK: - Hello Function Declaration\n\n/*\n * To add more functions, you need to:\n * - add a main `func xyz(fcinfo: FunctionCallInfo) -\n Datum`\n * - add a mandatory ABI function (just returns PG_FUNCTION_INFO_V1)\n * - load the function in the base36.sql file\n *\n * The functions need proper \nC names\n, so that PostgreSQL can find them. The\n * names are assigned using the `@_cdecl` attribute.\n */\n\n@_cdecl(\npg_finfo_base36_hello\n)\npublic func hello_abi() -\n UnsafeRawPointer {\n  return PG_FUNCTION_INFO_V1\n}\n\n@_cdecl(\nbase36_hello\n)\npublic func hello(fcinfo: FunctionCallInfo) -\n Datum {\n  return hello().pgDatum\n}\n\n// MARK: - PostgreSQL Extension Marker\n\n@_cdecl(\nPg_magic_func\n) public func PG_MAGIC_BLOCK() -\n UnsafeRawPointer {\n  return PGExtensionMagicStruct\n}\n\n\n\n\nExplanation of the Source\n\n\nTODO\n\n\nBuild Module\n\n\nNow that we looked at the source, lets build the module:\n\nswift pl build\n first invokes \nswift pl\n and subsequently converts the\nbuild results into an PostgreSQL extension shared library (\nbase36.so\n).\n\n\n$ swift pl build\nFetching https://github.com/PL-Swift/PLSwift.git\nFetching https://github.com/PL-Swift/CPLSwift.git\nCloning https://github.com/PL-Swift/PLSwift.git\nResolving https://github.com/PL-Swift/PLSwift.git at 0.0.4\nCloning https://github.com/PL-Swift/CPLSwift.git\nResolving https://github.com/PL-Swift/CPLSwift.git at 0.0.1\nCompile Swift Module 'PLSwift' (3 sources)\nCompile Swift Module 'base36' (2 sources)\n\n$ ls -hl .build/base36.so\n-rwxr-xr-x  1 helge  staff    74K Jan  6 14:52 .build/base36.so\n\n\n\n\nInstall Module\n\n\nThe \nswift pl install\n command will install the extension into your local\nPostgreSQL server.\n\n\nThat is, it will copy the build binary extension,\nthe control file\nand the SQL registration file into your PostgreSQL server.\n\n\n$ swift pl install\n\n\n\n\nLoad Module into PostgreSQL\n\n\nTODO", 
+            "title": "Using PL/Swift"
+        }, 
+        {
+            "location": "/usage/#hello-world", 
+            "text": "But lets do a simple  base36  module for demonstration purposes.", 
+            "title": "Hello World"
+        }, 
+        {
+            "location": "/usage/#setup-module", 
+            "text": "Setup a new directory and initialize it as an PostgreSQL extension:  $ mkdir base36   cd base36\n$ swift pl init\nThe Swift PostgreSQL build environment looks sound.\n\n  module:    base36\n  config:    debug\n  product:   /Users/helge/trump/base36/.build/base36.so\n  pg_config: /Applications/Postgres.app/Contents/Versions/9.4/bin/pg_config\n  PL/Swift:  /usr/local  This creates a Swift Package Manager module and places relevant extension\nfiles into it:  $ tree\n.\n\u251c\u2500\u2500 Package.swift\n\u251c\u2500\u2500 Sources\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 base36-ext.swift\n\u2502\u00a0\u00a0 \u2514\u2500\u2500 base36.swift\n\u251c\u2500\u2500 base36--0.0.1.sql\n\u2514\u2500\u2500 base36.control\n\n1 directory, 5 files  The  Package.swift  just loads the PL/Swift wrapper module we provide:  import PackageDescription\n\nlet package = Package(\n    name:  base36 ,\n\n    dependencies: [\n      .Package(url:  https://github.com/PL-Swift/PLSwift.git , \n               majorVersion: 0)\n    ]\n)  The  base36.swift  source file contains a a sample Swift SQL function. The\nfile can be named anything (but main.swift, which would produce a tool instead\nof a library ;-)  import Foundation\n\nfunc hello() -  String {\n  return  Hello Schwifty World! \n}  The  base36-ext.swift  file contains all the boilerplate to export the\nSwift function towards PostgreSQL:  import Foundation\nimport CPLSwift\nimport PLSwift\n\n// MARK: - Hello Function Declaration\n\n/*\n * To add more functions, you need to:\n * - add a main `func xyz(fcinfo: FunctionCallInfo) -  Datum`\n * - add a mandatory ABI function (just returns PG_FUNCTION_INFO_V1)\n * - load the function in the base36.sql file\n *\n * The functions need proper  C names , so that PostgreSQL can find them. The\n * names are assigned using the `@_cdecl` attribute.\n */\n\n@_cdecl( pg_finfo_base36_hello )\npublic func hello_abi() -  UnsafeRawPointer {\n  return PG_FUNCTION_INFO_V1\n}\n\n@_cdecl( base36_hello )\npublic func hello(fcinfo: FunctionCallInfo) -  Datum {\n  return hello().pgDatum\n}\n\n// MARK: - PostgreSQL Extension Marker\n\n@_cdecl( Pg_magic_func ) public func PG_MAGIC_BLOCK() -  UnsafeRawPointer {\n  return PGExtensionMagicStruct\n}", 
+            "title": "Setup Module"
+        }, 
+        {
+            "location": "/usage/#explanation-of-the-source", 
+            "text": "TODO", 
+            "title": "Explanation of the Source"
+        }, 
+        {
+            "location": "/usage/#build-module", 
+            "text": "Now that we looked at the source, lets build the module: swift pl build  first invokes  swift pl  and subsequently converts the\nbuild results into an PostgreSQL extension shared library ( base36.so ).  $ swift pl build\nFetching https://github.com/PL-Swift/PLSwift.git\nFetching https://github.com/PL-Swift/CPLSwift.git\nCloning https://github.com/PL-Swift/PLSwift.git\nResolving https://github.com/PL-Swift/PLSwift.git at 0.0.4\nCloning https://github.com/PL-Swift/CPLSwift.git\nResolving https://github.com/PL-Swift/CPLSwift.git at 0.0.1\nCompile Swift Module 'PLSwift' (3 sources)\nCompile Swift Module 'base36' (2 sources)\n\n$ ls -hl .build/base36.so\n-rwxr-xr-x  1 helge  staff    74K Jan  6 14:52 .build/base36.so", 
+            "title": "Build Module"
+        }, 
+        {
+            "location": "/usage/#install-module", 
+            "text": "The  swift pl install  command will install the extension into your local\nPostgreSQL server.  That is, it will copy the build binary extension,\nthe control file\nand the SQL registration file into your PostgreSQL server.  $ swift pl install", 
+            "title": "Install Module"
+        }, 
+        {
+            "location": "/usage/#load-module-into-postgresql", 
+            "text": "TODO", 
+            "title": "Load Module into PostgreSQL"
+        }, 
+        {
+            "location": "/tools/", 
+            "text": "PL/Swift Tools\n\n\nPL/Swift comes with a set of CLI tools that integrate with the \nSwift Package Manager.\nThe tools enhance the Swift Package Manager to be able to build native\nPostgreSQL extensions, configure them and run them.\nAll of them are invoked like:\n\n\nswift pl \nsubcommand\n\n\n\n\nIf the toolname is omitted, you get a small help:\n\n\n$ swift pl\nusage: swift pl \nsubcommand\n\n\nAvailable subcommands are:\n   init      Setup directory as a Swift PostgreSQL Package.\n   build     Build Swift Package as a PostgreSQL loadable module.\n   install   Install module into PostgreSQL server.\n   validate  Check PostgreSQL build environment.\n\nTry 'swift pl \nsubcommand\n help' for details.\n\n\n\n\nswift pl init\n\n\nPrepare a directory as a Swift PostgreSQL extension.\n\n\n$ mkdir base36 \n cd base36\n$ swift pl init\nThe Swift PostgreSQL build environment looks sound.\n\n  module:    base36\n  config:    debug\n  product:   /Users/helge/trump/base36/.build/base36.so\n  pg_config: /Applications/Postgres.app/Contents/Versions/9.4/bin/pg_config\n  PL/Swift:  /usr/local\n\n\n\n\nThis creates a set of files:\n- the control file for the package\n- the SQL file to register the package functions w/ PostgreSQL\n- a boilerplate file which contains the C function registration\n- a file where the actual Swift functions are kept\n\n\nswift pl build\n\n\nswift pl build\n first invokes \nswift build\n and subsequently converts the\nbuild results into an PostgreSQL extension shared library.\n\n\n$ swift pl build\nFetching https://github.com/PL-Swift/PLSwift.git\nFetching https://github.com/PL-Swift/CPLSwift.git\nCloning https://github.com/PL-Swift/PLSwift.git\nResolving https://github.com/PL-Swift/PLSwift.git at 0.0.4\nCloning https://github.com/PL-Swift/CPLSwift.git\nResolving https://github.com/PL-Swift/CPLSwift.git at 0.0.1\nCompile Swift Module 'PLSwift' (3 sources)\nCompile Swift Module 'base36' (2 sources)\n\n$ ls -hl .build/base36.so\n-rwxr-xr-x  1 helge  staff    74K Jan  6 14:52 .build/base36.so\n\n\n\n\nswift pl install\n\n\nThe \nswift pl install\n command will install the extension into your local\nPostgreSQL server.\n\n\nThat is, it will copy the build binary extension,\nthe control file\nand the SQL registration file into your PostgreSQL server.\n\n\n$ swift pl install\n\n\n\n\nswift pl validate\n\n\nswift pl validate\n just checks whether a build is likely to be successful\nand prints out the configuration assumptions it has.\n\n\n$ swift pl validate\nThe Swift PostgreSQL build environment looks sound.\n\n  srcroot:   /Users/helge/trump/base36\n  module:    base36\n  config:    debug\n  product:   /Users/helge/trump/base36/.build/base36.so\n  version:   0.0.1\n  sql-setup: base36--0.0.1.sql\n  pg_config: /Applications/Postgres.app/Contents/Versions/9.4/bin/pg_config\n  moddir:    /Applications/Postgres.app/Contents/Versions/9.4/lib/postgresql\n  extdir:    /Applications/Postgres.app/Contents/Versions/9.4/share/postgresql/extension/\n  PL/Swift:  /usr/local\n  swift:     4.0.3", 
+            "title": "Tools Reference"
+        }, 
+        {
+            "location": "/tools/#plswift-tools", 
+            "text": "PL/Swift comes with a set of CLI tools that integrate with the \nSwift Package Manager.\nThe tools enhance the Swift Package Manager to be able to build native\nPostgreSQL extensions, configure them and run them.\nAll of them are invoked like:  swift pl  subcommand   If the toolname is omitted, you get a small help:  $ swift pl\nusage: swift pl  subcommand \n\nAvailable subcommands are:\n   init      Setup directory as a Swift PostgreSQL Package.\n   build     Build Swift Package as a PostgreSQL loadable module.\n   install   Install module into PostgreSQL server.\n   validate  Check PostgreSQL build environment.\n\nTry 'swift pl  subcommand  help' for details.", 
+            "title": "PL/Swift Tools"
+        }, 
+        {
+            "location": "/tools/#swift-pl-init", 
+            "text": "Prepare a directory as a Swift PostgreSQL extension.  $ mkdir base36   cd base36\n$ swift pl init\nThe Swift PostgreSQL build environment looks sound.\n\n  module:    base36\n  config:    debug\n  product:   /Users/helge/trump/base36/.build/base36.so\n  pg_config: /Applications/Postgres.app/Contents/Versions/9.4/bin/pg_config\n  PL/Swift:  /usr/local  This creates a set of files:\n- the control file for the package\n- the SQL file to register the package functions w/ PostgreSQL\n- a boilerplate file which contains the C function registration\n- a file where the actual Swift functions are kept", 
+            "title": "swift pl init"
+        }, 
+        {
+            "location": "/tools/#swift-pl-build", 
+            "text": "swift pl build  first invokes  swift build  and subsequently converts the\nbuild results into an PostgreSQL extension shared library.  $ swift pl build\nFetching https://github.com/PL-Swift/PLSwift.git\nFetching https://github.com/PL-Swift/CPLSwift.git\nCloning https://github.com/PL-Swift/PLSwift.git\nResolving https://github.com/PL-Swift/PLSwift.git at 0.0.4\nCloning https://github.com/PL-Swift/CPLSwift.git\nResolving https://github.com/PL-Swift/CPLSwift.git at 0.0.1\nCompile Swift Module 'PLSwift' (3 sources)\nCompile Swift Module 'base36' (2 sources)\n\n$ ls -hl .build/base36.so\n-rwxr-xr-x  1 helge  staff    74K Jan  6 14:52 .build/base36.so", 
+            "title": "swift pl build"
+        }, 
+        {
+            "location": "/tools/#swift-pl-install", 
+            "text": "The  swift pl install  command will install the extension into your local\nPostgreSQL server.  That is, it will copy the build binary extension,\nthe control file\nand the SQL registration file into your PostgreSQL server.  $ swift pl install", 
+            "title": "swift pl install"
+        }, 
+        {
+            "location": "/tools/#swift-pl-validate", 
+            "text": "swift pl validate  just checks whether a build is likely to be successful\nand prints out the configuration assumptions it has.  $ swift pl validate\nThe Swift PostgreSQL build environment looks sound.\n\n  srcroot:   /Users/helge/trump/base36\n  module:    base36\n  config:    debug\n  product:   /Users/helge/trump/base36/.build/base36.so\n  version:   0.0.1\n  sql-setup: base36--0.0.1.sql\n  pg_config: /Applications/Postgres.app/Contents/Versions/9.4/bin/pg_config\n  moddir:    /Applications/Postgres.app/Contents/Versions/9.4/lib/postgresql\n  extdir:    /Applications/Postgres.app/Contents/Versions/9.4/share/postgresql/extension/\n  PL/Swift:  /usr/local\n  swift:     4.0.3", 
+            "title": "swift pl validate"
+        }, 
+        {
+            "location": "/links/", 
+            "text": "PostgreSQL Link Collection\n\n\nThere is plenty of information on the Interwebs about \n\"PostgreSQL\":\n\n\nOfficial Apache Documentation\n\n\n\n\n\n\nPostgreSQL\n\n\n\n\n\n\nmod_swift\n, write Apache2 modules in Swift\n\n\n\n\nPostgreSQL Server Programming\n\n\nPostgreSQL C Language Functions", 
+            "title": "Link Collection"
+        }, 
+        {
+            "location": "/links/#postgresql-link-collection", 
+            "text": "There is plenty of information on the Interwebs about \n\"PostgreSQL\":", 
+            "title": "PostgreSQL Link Collection"
+        }, 
+        {
+            "location": "/links/#official-apache-documentation", 
+            "text": "PostgreSQL    mod_swift , write Apache2 modules in Swift   PostgreSQL Server Programming  PostgreSQL C Language Functions", 
+            "title": "Official Apache Documentation"
+        }, 
+        {
+            "location": "/about/", 
+            "text": "Bringing Swift to the Backend of the Backend's Backend\n.\n\n\nContact\n\n\nHey, we love feedback. Join the mailing list, Slack channel or just drop us\nan email to tell us why this is crap (or not?).\n\n\n\n\nMailing List\n\n\nSlack\n\n\ninfo@apacheexpress.io\n\n\n\n\nMkdocs\n\n\nBuilt with \nMkDocs\n \nusing a \ntheme\n \nprovided by \nRead the Docs\n.\n\n\nWho\n\n\nPL/Swift is brought to you by the\n\nZeeZide\n GmbH.\n\nImprint\n.", 
+            "title": "About"
+        }, 
+        {
+            "location": "/about/#contact", 
+            "text": "Hey, we love feedback. Join the mailing list, Slack channel or just drop us\nan email to tell us why this is crap (or not?).   Mailing List  Slack  info@apacheexpress.io", 
+            "title": "Contact"
+        }, 
+        {
+            "location": "/about/#mkdocs", 
+            "text": "Built with  MkDocs  \nusing a  theme  \nprovided by  Read the Docs .", 
+            "title": "Mkdocs"
+        }, 
+        {
+            "location": "/about/#who", 
+            "text": "PL/Swift is brought to you by the ZeeZide  GmbH. Imprint .", 
+            "title": "Who"
+        }
+    ]
+}
