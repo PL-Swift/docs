@@ -212,9 +212,7 @@ import PLSwift
  */
 
 @_cdecl(&quot;pg_finfo_base36_hello&quot;)
-public func hello_abi() -&gt; UnsafeRawPointer {
-  return PG_FUNCTION_INFO_V1
-}
+public func hello_abi() -&gt; UnsafeRawPointer { return PG_FUNCTION_INFO_V1 }
 
 @_cdecl(&quot;base36_hello&quot;)
 public func hello(fcinfo: FunctionCallInfo) -&gt; Datum {
@@ -228,8 +226,68 @@ public func hello(fcinfo: FunctionCallInfo) -&gt; Datum {
 }
 </code></pre>
 
+<h3 id="intermission-_cdecl">Intermission: <code>@_cdecl</code></h3>
+<p>PostgreSQL is written in C and when loading objects, expects the exported
+functions, data, etc to be in "C-style" (conforming to the platforms C ABI).</p>
+<p>While Swift interoperates with C ABI code just fine,
+it does not use the C ABI, but - like C++ - "mangles" the names. This is to
+support type overloading, module, etc - the details don't matter here.</p>
+<p>The important thing is that Swift functions need to be given a "C name" to be
+accessible by a C caller like PostgreSQL.
+This is what the <code>@_cdecl</code> function attribute is good for.</p>
+<p>Consider this:</p>
+<pre><code>@_cdecl("base36_hello") func hello() {}
+</code></pre>
+<p>Within the Swift module, the name of the function is just <code>hello</code>.
+In the compiled Swift binary this becomes something like (run <code>nm -gU</code>
+on the shared library to check that):</p>
+<pre><code>__T006base365helloSuSpySC20FunctionCallInfoDataVG6fcinfo_tF
+</code></pre>
+<p>This can't be consumed by PostgreSQL.
+By adding the <code>@_cdecl("base36_hello")</code>, the binary will also contain a plain</p>
+<pre><code>_base36_hello
+</code></pre>
+<p>Which is what PostgreSQL will find and load.</p>
 <h3 id="explanation-of-the-source">Explanation of the Source</h3>
-<p>TODO</p>
+<p>The boilerplate contains the things exported by the extension using the
+C/PG ABI. When PostgreSQL loads the dynamic object, it will use the
+<code>dlsym</code> family of functions to locate entry points into the extension.</p>
+<p>There is one 'marker' entry point, the <code>PG_MAGIC_BLOCK</code>. This has to be declared
+exactly once in the extension and tells PG that this is indeed a valid
+PostgreSQL extension, plus the PostgreSQL API the module was compiled against
+etc:</p>
+<pre><code>    @_cdecl("Pg_magic_func") public func PG_MAGIC_BLOCK() -&gt; UnsafeRawPointer {
+      return PGExtensionMagicStruct
+    }
+</code></pre>
+<p>In addition to that, there are <em>two</em> functions for each SQL function, the
+actual function which is called by PostgreSQL when the function is used
+from within PostgreSQL:</p>
+<pre><code>    @_cdecl("base36_hello")
+    public func hello(fcinfo: FunctionCallInfo) -&gt; Datum
+</code></pre>
+<p>and an "ABI version function". The ABI version function is always the same,
+and PostgreSQL only supports this one ABI v1. Declaring the function is still
+mandatory:</p>
+<pre><code>@_cdecl("pg_finfo_base36_hello")
+func hello_abi() -&gt; UnsafeRawPointer { return PG_FUNCTION_INFO_V1 }
+</code></pre>
+<p>Notice that the C name is the same like the actual function name, but
+with a <code>pg_finfo_</code> prefix. Just return the <code>PG_FUNCTION_INFO_V1</code> constant.</p>
+<p>Back to the actual function, it receives a <code>FunctionCallInfo</code> pointer.
+The struct this is pointing to, contains the arguments the SQL function was
+called with and a few more things.
+For example if the first argument is an int, it can be extracted like this:</p>
+<pre><code>let firstArgument = fcinfo.pointee[int: 0]
+</code></pre>
+<p>The function returns a <code>Datum</code>. <code>Datum</code> is an opaque PostgreSQL type which can
+carry all kinds of values. Same thing like a Swift <code>Any</code> essentially.
+<code>PLSwift</code> contains a protocol which can turn various Swift types into <code>Datum</code>
+values. For example to return a SQL TEXT, you can simply do this:</p>
+<pre><code>return "Hello".pgDatum
+</code></pre>
+<p>That is what the boilerplate does. We recommend to keep it in a separate file
+from the actual implementation of the function.</p>
 <h2 id="build-module">Build Module</h2>
 <p>Now that we looked at the source, lets build the module:
 <code>swift pl build</code> first invokes <code>swift pl</code> and subsequently converts the
@@ -258,7 +316,14 @@ and the SQL registration file into your PostgreSQL server.</p>
 </code></pre>
 
 <h2 id="load-module-into-postgresql">Load Module into PostgreSQL</h2>
-<p>TODO</p>
+<p>Once you installed the module, you can simply load it into your PostgreSQL
+like that:</p>
+<pre><code>CREATE EXTENSION "base36";
+</code></pre>
+<p>and then call functions, like for example:</p>
+<pre><code>SELECT * FROM base36_hello();
+</code></pre>
+<p>When you are in <code>psql</code>, you can use <code>\df</code> to list the registered functions.</p>
               
             </div>
           </div>

@@ -18,23 +18,23 @@ Then add the PL/Swift tap and install plswift:
 
     brew tap PL-Swift/plswift
     brew install plswift
-    
+
 ## Install using Docker
 
 There is also a [Docker image](https://hub.docker.com/r/helje5/swift-pgdev/)
 w/ Swift, PostgreSQL and PL/Swift.
 
-Simple run it using:
+Simply run it using:
 
     docker run --rm -it --name plswift helje5/swift-pgdev /bin/bash
-    
+
 You may want to expose the PG port (`-p 127.0.0.1:5432:5432`), or not.
 
 Within the image, start PostgreSQL (swift user pwd is just `swift`):
 
     sudo /etc/init.d/postgresql start
     swift pl validate
-    
+
 And you are good. The image contains Emacs, Swift, PL/Swift, psql, and all the
 other stuff you need to play.
 
