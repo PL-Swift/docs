@@ -173,11 +173,12 @@ values. For example to return a SQL TEXT, you can simply do this:
 
 That is what the boilerplate does. We recommend to keep it in a separate file
 from the actual implementation of the function.
+It is ugly and you don't want to look at that uglyness all the time.
 
 ## Build Module
 
 Now that we looked at the source, lets build the module:
-`swift pl build` first invokes `swift pl` and subsequently converts the
+`swift pl build` first invokes `swift build` and subsequently converts the
 build results into an PostgreSQL extension shared library (`base36.so`).
 
 ```

@@ -93,9 +93,20 @@ If something isn't working in a Homebrew setup, check whether:
 
 outputs anything unusual.
 
+Sometimes, you maybe have both, PostgreSQL binaries via Homebrew, and
+for example the PostgreSQL.app.
+This can result in such:
+
+		helge=# CREATE EXTENSION "hello";
+		ERROR:  incompatible library "/Applications/Postgres.app/Contents/Versions/9.4/lib/postgresql/hello.so": version mismatch
+		DETAIL:  Server is version 9.4, library is version 10.0.
+
+Here, PostgreSQL.app is at 9.4, while Brew already has PostgreSQL 10 and hence
+produces a conflict.
+
+### Finding Help
+
 If you need any help, feel free to ask on the
 [Mailing List](https://groups.google.com/d/forum/apacheexpress)
 or our
 [Slack channel](http://slack.noze.io).
-
-

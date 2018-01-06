@@ -288,10 +288,11 @@ values. For example to return a SQL TEXT, you can simply do this:</p>
 <pre><code>return "Hello".pgDatum
 </code></pre>
 <p>That is what the boilerplate does. We recommend to keep it in a separate file
-from the actual implementation of the function.</p>
+from the actual implementation of the function.
+It is ugly and you don't want to look at that uglyness all the time.</p>
 <h2 id="build-module">Build Module</h2>
 <p>Now that we looked at the source, lets build the module:
-<code>swift pl build</code> first invokes <code>swift pl</code> and subsequently converts the
+<code>swift pl build</code> first invokes <code>swift build</code> and subsequently converts the
 build results into an PostgreSQL extension shared library (<code>base36.so</code>).</p>
 <pre><code>$ swift pl build
 Fetching https://github.com/PL-Swift/PLSwift.git
