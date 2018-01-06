@@ -228,15 +228,15 @@ public func hello(fcinfo: FunctionCallInfo) -&gt; Datum {
 
 <h3 id="intermission-_cdecl">Intermission: <code>@_cdecl</code></h3>
 <p>PostgreSQL is written in C and when loading objects, expects the exported
-functions, data, etc to be in "C-style" (conforming to the platforms C ABI).</p>
-<p>While Swift interoperates with C ABI code just fine,
+functions, data, etc to be in "C-style" (conforming to the platforms C ABI).
+While Swift interoperates with C ABI code just fine,
 it does not use the C ABI, but - like C++ - "mangles" the names. This is to
 support type overloading, module, etc - the details don't matter here.</p>
 <p>The important thing is that Swift functions need to be given a "C name" to be
 accessible by a C caller like PostgreSQL.
-This is what the <code>@_cdecl</code> function attribute is good for.</p>
-<p>Consider this:</p>
-<pre><code>@_cdecl("base36_hello") func hello() {}
+This is what the <code>@_cdecl</code> function attribute is good for.
+Consider this:</p>
+<pre><code>@_cdecl("base36_hello") func hello(...) {}
 </code></pre>
 <p>Within the Swift module, the name of the function is just <code>hello</code>.
 In the compiled Swift binary this becomes something like (run <code>nm -gU</code>
@@ -244,7 +244,8 @@ on the shared library to check that):</p>
 <pre><code>__T006base365helloSuSpySC20FunctionCallInfoDataVG6fcinfo_tF
 </code></pre>
 <p>This can't be consumed by PostgreSQL.
-By adding the <code>@_cdecl("base36_hello")</code>, the binary will also contain a plain</p>
+By adding the <code>@_cdecl("base36_hello")</code>, the binary will also contain a plain
+reference:</p>
 <pre><code>_base36_hello
 </code></pre>
 <p>Which is what PostgreSQL will find and load.</p>

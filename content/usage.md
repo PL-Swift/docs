@@ -100,7 +100,6 @@ public func hello(fcinfo: FunctionCallInfo) -> Datum {
 
 PostgreSQL is written in C and when loading objects, expects the exported
 functions, data, etc to be in "C-style" (conforming to the platforms C ABI).
-
 While Swift interoperates with C ABI code just fine,
 it does not use the C ABI, but - like C++ - "mangles" the names. This is to
 support type overloading, module, etc - the details don't matter here.
@@ -108,10 +107,9 @@ support type overloading, module, etc - the details don't matter here.
 The important thing is that Swift functions need to be given a "C name" to be
 accessible by a C caller like PostgreSQL.
 This is what the `@_cdecl` function attribute is good for.
-
 Consider this:
 
-    @_cdecl("base36_hello") func hello() {}
+    @_cdecl("base36_hello") func hello(...) {}
 
 Within the Swift module, the name of the function is just `hello`.
 In the compiled Swift binary this becomes something like (run `nm -gU`
@@ -121,6 +119,7 @@ on the shared library to check that):
 
 This can't be consumed by PostgreSQL.
 By adding the `@_cdecl("base36_hello")`, the binary will also contain a plain
+reference:
 
     _base36_hello
 
