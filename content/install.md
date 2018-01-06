@@ -18,26 +18,42 @@ Then add the PL/Swift tap and install plswift:
 
     brew tap PL-Swift/plswift
     brew install plswift
+    
+## Install using Docker
+
+There is also a [Docker image](https://hub.docker.com/r/helje5/swift-pgdev/)
+w/ Swift, PostgreSQL and PL/Swift.
+
+Simple run it using:
+
+    docker run --rm -it --name plswift helje5/swift-pgdev /bin/bash
+    
+You may want to expose the PG port (`-p 127.0.0.1:5432:5432`), or not.
+
+Within the image, start PostgreSQL (swift user pwd is just `swift`):
+
+    sudo /etc/init.d/postgresql start
+    swift pl validate
+    
+And you are good. The image contains Emacs, Swift, PL/Swift, psql, and all the
+other stuff you need to play.
 
 ## Install on Linux (or macOS w/o Homebrew)
 
 On macOS: We strongly advise that you rather use Homebrew, more importantly
           the Apache provided by Homebrew.
 
-Ubuntu packages required (assuming you have Swift 3 installed already), this includes
-the PostgreSQL and SQLite3 database adaptors, add additional ones as desired:
+Ubuntu packages required (assuming you have Swift installed already):
 
     sudo apt-get update
     sudo apt-get install \
-       curl pkg-config
-
-TODO: test & add actual packages required
+       curl pkg-config postgresql libpq-dev postgresql-server-dev-all
 
 Install PL/Swift:
 
     curl -L -o plswift.tgz \
-         https://github.com/PL-Swift/plswift/archive/0.0.4.tar.gz
-    tar zxf plswift.tgz && cd plswift-0.0.4
+         https://github.com/PL-Swift/plswift/archive/0.0.5.tar.gz
+    tar zxf plswift.tgz && cd PLSwift-0.0.5
     make
     sudo make install
 
