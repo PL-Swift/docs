@@ -1,0 +1,21 @@
+site_name:        PL/Swift
+site_url:         https://pl-swift.github.io/
+site_author:      ZeeZide GmbH
+copyright:        © ZeeZide GmbH 2018
+repo_url:         https://github.com/PL-Swift/PLSwift
+google_analytics: [ 'UA-3266252-11', 'mod-swift.org' ]
+  
+docs_dir:    content
+site_dir:    docs
+
+theme:       readthedocs
+theme_dir:   custom_theme
+extra_css:   [ extra.css ]
+
+pages:
+  - 'Introduction':            'index.md'
+  - 'Installation':            'install.md'
+  - 'Using PL/Swift':          'usage.md'
+  - 'Tools Reference':         'tools.md'
+  - 'Link Collection':         'links.md'
+  - 'About':                   'about.md'
