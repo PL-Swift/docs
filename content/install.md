@@ -93,7 +93,7 @@ If something isn't working in a Homebrew setup, check whether:
 
 outputs anything unusual.
 
-Sometimes, you maybe have both, PostgreSQL binaries via Homebrew, and
+Sometimes, you may have both, PostgreSQL binaries via Homebrew, and
 for example the PostgreSQL.app.
 This can result in such:
 
@@ -103,6 +103,18 @@ This can result in such:
 
 Here, PostgreSQL.app is at 9.4, while Brew already has PostgreSQL 10 and hence
 produces a conflict.
+When you run into this, it is probably easiest to link
+`/usr/local/bin/pg_config`
+to the one you want to use. For example:
+
+    ln -sf `which pg_config` /usr/local/bin/pg_config
+
+and reinstall plswift:
+
+    brew reinstall plswift
+
+Recompile/reinstall the extension and all should be good.
+
 
 ### Finding Help
 

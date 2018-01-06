@@ -214,7 +214,7 @@ ERROR: Missing setup file:
 <pre><code>brew doctor
 </code></pre>
 <p>outputs anything unusual.</p>
-<p>Sometimes, you maybe have both, PostgreSQL binaries via Homebrew, and
+<p>Sometimes, you may have both, PostgreSQL binaries via Homebrew, and
 for example the PostgreSQL.app.
 This can result in such:</p>
 <pre><code>    helge=# CREATE EXTENSION "hello";
@@ -222,7 +222,16 @@ This can result in such:</p>
     DETAIL:  Server is version 9.4, library is version 10.0.
 </code></pre>
 <p>Here, PostgreSQL.app is at 9.4, while Brew already has PostgreSQL 10 and hence
-produces a conflict.</p>
+produces a conflict.
+When you run into this, it is probably easiest to link
+<code>/usr/local/bin/pg_config</code>
+to the one you want to use. For example:</p>
+<pre><code>ln -sf `which pg_config` /usr/local/bin/pg_config
+</code></pre>
+<p>and reinstall plswift:</p>
+<pre><code>brew reinstall plswift
+</code></pre>
+<p>Recompile/reinstall the extension and all should be good.</p>
 <h3 id="finding-help">Finding Help</h3>
 <p>If you need any help, feel free to ask on the
 <a href="https://groups.google.com/d/forum/apacheexpress">Mailing List</a>
