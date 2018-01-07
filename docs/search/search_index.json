@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "PL/Swift Documentation\n\n\nPL/Swift\n allows you to write custom SQL functions and types\nfor the\n\nPostgreSQL\n database server\nin the \n\nSwift\n\nprogramming language.\n\n\nWhat is an PostgreSQL extension?\n\n\nThe PostgreSQL database server is quite modular and can be extended with\ncustom SQL functions and custom SQL types.\n\n\nSuch extensions can be written in PSQL itself,\nin scripting languages such as Python or TCL,\nand in plain C.\n\n\nTODO: write more", 
+            "text": "PL/Swift Documentation\n\n\nPL/Swift\n allows you to write custom SQL functions and types\nfor the\n\nPostgreSQL\n database server\nin the \n\nSwift\n\nprogramming language.\n\n\nWhat is an PostgreSQL extension?\n\n\nThe PostgreSQL database server is quite modular and can be extended with\ncustom SQL functions and custom SQL types.\n\n\nSuch extensions can be written in PSQL itself,\nin scripting languages such as Python or TCL,\nand in plain C.\n\n\nNow PL/Swift allows you to write extensions using Swift.\n\n\nAssume you have a Swift function which turns an integer into a\n\nbase36\n\nencoded String,\nto replicate the trick used by URL shorteners\n(\"\ngoo.gl/QvohfE\n\"):\n\n\nfunc base36_encode(_ v: Int) -\n String {\n  return String(v, radix: 36)\n}\n\n\n\n\nand now you would like to use that in a SQL query, like so:\n\n\nhelge=# SELECT base36_encode(31337);\n base36_encode \n---------------\n o6h\n(1 row)\n\n\n\n\nThis is what PL/Swift does. It helps you expose your Swift functions to\nPostgreSQL.", 
             "title": "Introduction"
         }, 
         {
@@ -12,7 +12,7 @@
         }, 
         {
             "location": "/#what-is-an-postgresql-extension", 
-            "text": "The PostgreSQL database server is quite modular and can be extended with\ncustom SQL functions and custom SQL types.  Such extensions can be written in PSQL itself,\nin scripting languages such as Python or TCL,\nand in plain C.  TODO: write more", 
+            "text": "The PostgreSQL database server is quite modular and can be extended with\ncustom SQL functions and custom SQL types.  Such extensions can be written in PSQL itself,\nin scripting languages such as Python or TCL,\nand in plain C.  Now PL/Swift allows you to write extensions using Swift.  Assume you have a Swift function which turns an integer into a base36 \nencoded String,\nto replicate the trick used by URL shorteners\n(\" goo.gl/QvohfE \"):  func base36_encode(_ v: Int) -  String {\n  return String(v, radix: 36)\n}  and now you would like to use that in a SQL query, like so:  helge=# SELECT base36_encode(31337);\n base36_encode \n---------------\n o6h\n(1 row)  This is what PL/Swift does. It helps you expose your Swift functions to\nPostgreSQL.", 
             "title": "What is an PostgreSQL extension?"
         }, 
         {
@@ -127,7 +127,7 @@
         }, 
         {
             "location": "/links/", 
-            "text": "PostgreSQL Link Collection\n\n\nThere is plenty of information on the Interwebs about \n\"PostgreSQL\":\n\n\nOfficial Apache Documentation\n\n\n\n\n\n\nPostgreSQL\n\n\n\n\n\n\nmod_swift\n, write Apache2 modules in Swift\n\n\n\n\nPostgreSQL Server Programming\n\n\nPostgreSQL C Language Functions", 
+            "text": "PostgreSQL Link Collection\n\n\nThere is plenty of information on the Interwebs about \n\"PostgreSQL\":\n\n\nOfficial Apache Documentation\n\n\n\n\nPostgreSQL\n project page\n\n\nPostgreSQL Server Programming\n\n\nPostgreSQL C Language Functions\n\n\n\n\n\n\nTutorials\n\n\nbig elephants - Writing Postgres Extensions - the Basics\n\n\n\n\n\n\nOther stuff\n\n\nmod_swift\n, write Apache2 modules in Swift", 
             "title": "Link Collection"
         }, 
         {
@@ -137,7 +137,7 @@
         }, 
         {
             "location": "/links/#official-apache-documentation", 
-            "text": "PostgreSQL    mod_swift , write Apache2 modules in Swift   PostgreSQL Server Programming  PostgreSQL C Language Functions", 
+            "text": "PostgreSQL  project page  PostgreSQL Server Programming  PostgreSQL C Language Functions    Tutorials  big elephants - Writing Postgres Extensions - the Basics    Other stuff  mod_swift , write Apache2 modules in Swift", 
             "title": "Official Apache Documentation"
         }, 
         {

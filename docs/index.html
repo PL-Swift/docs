@@ -148,7 +148,27 @@ custom SQL functions and custom SQL types.</p>
 <p>Such extensions can be written in PSQL itself,
 in scripting languages such as Python or TCL,
 and in plain C.</p>
-<p>TODO: write more</p>
+<p>Now PL/Swift allows you to write extensions using Swift.</p>
+<p>Assume you have a Swift function which turns an integer into a
+<a href="https://en.wikipedia.org/wiki/Base36">base36</a>
+encoded String,
+to replicate the trick used by URL shorteners
+("<code>goo.gl/QvohfE</code>"):</p>
+<pre><code class="swift">func base36_encode(_ v: Int) -&gt; String {
+  return String(v, radix: 36)
+}
+</code></pre>
+
+<p>and now you would like to use that in a SQL query, like so:</p>
+<pre><code class="sql">helge=# SELECT base36_encode(31337);
+ base36_encode 
+---------------
+ o6h
+(1 row)
+</code></pre>
+
+<p>This is what PL/Swift does. It helps you expose your Swift functions to
+PostgreSQL.</p>
               
             </div>
           </div>
@@ -190,5 +210,5 @@ and in plain C.</p>
 
 <!--
 MkDocs version : 0.17.2
-Build Date UTC : 2018-01-06 23:35:11
+Build Date UTC : 2018-01-07 17:22:26
 -->
