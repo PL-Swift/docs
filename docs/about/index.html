@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   <link href="../extra.css" rel="stylesheet">
   
   <script>
@@ -23,15 +23,16 @@
     var mkdocs_page_url = "/about/";
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-3266252-11', 'mod-swift.org');
       ga('send', 'pageview');
@@ -49,7 +50,7 @@
         <a href=".." class="icon icon-home"> PL/Swift</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -123,11 +124,11 @@
       
     
     <li>About</li>
-    
     <li class="wy-breadcrumbs-aside">
-      <a href="https://pl-swift.github.io/">
-        <img src="http://zeezide.com/img/plswift.svg" />
-      </a>
+      
+        <a href="https://github.com/PL-Swift/PLSwift/edit/master/docs/about.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
     </li>
   </ul>
   <hr/>
@@ -142,7 +143,7 @@ an email to tell us why this is crap (or not?).</p>
 <ul>
 <li><a href="https://groups.google.com/d/forum/apacheexpress">Mailing List</a></li>
 <li><a href="http://slack.noze.io">Slack</a></li>
-<li><a href="../info@apacheexpress.io">info@apacheexpress.io</a></li>
+<li><a href="info@apacheexpress.io">info@apacheexpress.io</a></li>
 </ul>
 <h3 id="mkdocs">Mkdocs</h3>
 <p>Built with <a href="http://www.mkdocs.org">MkDocs</a> 
@@ -155,6 +156,7 @@ provided by <a href="https://readthedocs.org">Read the Docs</a>.</p>
               
             </div>
           </div>
+          <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
@@ -164,7 +166,18 @@ provided by <a href="https://readthedocs.org">Read the Docs</a>.</p>
     </div>
   
 
+  <hr/>
 
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>© ZeeZide GmbH 2018</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
         </div>
       </div>
 
@@ -184,9 +197,8 @@ provided by <a href="https://readthedocs.org">Read the Docs</a>.</p>
     </span>
 </div>
     <script>var base_url = '..';</script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/require.js"></script>
-      <script src="../search/search.js"></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
 
 </body>
 </html>

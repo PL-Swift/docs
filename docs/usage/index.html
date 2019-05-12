@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   <link href="../extra.css" rel="stylesheet">
   
   <script>
@@ -23,15 +23,16 @@
     var mkdocs_page_url = "/usage/";
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-3266252-11', 'mod-swift.org');
       ga('send', 'pageview');
@@ -49,7 +50,7 @@
         <a href=".." class="icon icon-home"> PL/Swift</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -129,11 +130,11 @@
       
     
     <li>Using PL/Swift</li>
-    
     <li class="wy-breadcrumbs-aside">
-      <a href="https://pl-swift.github.io/">
-        <img src="http://zeezide.com/img/plswift.svg" />
-      </a>
+      
+        <a href="https://github.com/PL-Swift/PLSwift/edit/master/docs/usage.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
     </li>
   </ul>
   <hr/>
@@ -162,8 +163,9 @@ files into it:</p>
 .
 ├── Package.swift
 ├── Sources
-│   ├── base36-ext.swift
-│   └── base36.swift
+│   └── helloswiftpl
+│       ├── base36-ext.swift
+│       └── base36.swift
 ├── base36--0.0.1.sql
 └── base36.control
 
@@ -178,7 +180,7 @@ let package = Package(
 
     dependencies: [
       .Package(url: &quot;https://github.com/PL-Swift/PLSwift.git&quot;, 
-               majorVersion: 0)
+               from: &quot;0.5.1&quot;)
     ]
 )
 </code></pre>
@@ -295,15 +297,14 @@ It is ugly and you don't want to look at that uglyness all the time.</p>
 <code>swift pl build</code> first invokes <code>swift build</code> and subsequently converts the
 build results into an PostgreSQL extension shared library (<code>base36.so</code>).</p>
 <pre><code>$ swift pl build
-Fetching https://github.com/PL-Swift/PLSwift.git
 Fetching https://github.com/PL-Swift/CPLSwift.git
-Cloning https://github.com/PL-Swift/PLSwift.git
-Resolving https://github.com/PL-Swift/PLSwift.git at 0.0.4
+Fetching https://github.com/PL-Swift/PLSwift.git
+Completed resolution in 2.83s
 Cloning https://github.com/PL-Swift/CPLSwift.git
-Resolving https://github.com/PL-Swift/CPLSwift.git at 0.0.1
-Compile Swift Module 'PLSwift' (3 sources)
-Compile Swift Module 'base36' (2 sources)
-
+Resolving https://github.com/PL-Swift/CPLSwift.git at 1.0.3
+Cloning https://github.com/PL-Swift/PLSwift.git
+Resolving https://github.com/PL-Swift/PLSwift.git at 0.5.1
+[2/2] Compiling Swift Module 'base36' (2 sources)
 $ ls -hl .build/base36.so
 -rwxr-xr-x  1 helge  staff    74K Jan  6 14:52 .build/base36.so
 </code></pre>
@@ -329,6 +330,7 @@ like that:</p>
               
             </div>
           </div>
+          <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
@@ -340,7 +342,18 @@ like that:</p>
     </div>
   
 
+  <hr/>
 
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>© ZeeZide GmbH 2018</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
         </div>
       </div>
 
@@ -362,9 +375,8 @@ like that:</p>
     </span>
 </div>
     <script>var base_url = '..';</script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/require.js"></script>
-      <script src="../search/search.js"></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
 
 </body>
 </html>
