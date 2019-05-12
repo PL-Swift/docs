@@ -52,8 +52,8 @@ Ubuntu packages required (assuming you have Swift installed already):
 Install PL/Swift:
 
     curl -L -o plswift.tgz \
-         https://github.com/PL-Swift/plswift/archive/0.0.5.tar.gz
-    tar zxf plswift.tgz && cd PLSwift-0.0.5
+         https://github.com/PL-Swift/plswift/archive/0.5.1.tar.gz
+    tar zxf plswift.tgz && cd PLSwift-0.5.1
     make
     sudo make install
 
@@ -67,17 +67,18 @@ You can call `swift pl validate` to make sure the installation is OK:
 
     The Swift PostgreSQL build environment looks sound.
     
-      srcroot:   /Users/helge/dev/Swift/PLSwift/PLSwift
-      module:    PLSwift
+      srcroot:   /Users/helge
+      module:    helge
       config:    debug
-      product:   /Users/helge/dev/Swift/PLSwift/PLSwift/.build/PLSwift.so
+      product:   /Users/helge/.build/helge.so
       version:   
       sql-setup: 
-      pg_config: /Applications/Postgres.app/Contents/Versions/9.4/bin/pg_config
-      moddir:    /Applications/Postgres.app/Contents/Versions/9.4/lib/postgresql
-      extdir:    /Applications/Postgres.app/Contents/Versions/9.4/share/postgresql/extension/
+      pg_config: /usr/local/bin/pg_config
+      moddir:    /usr/local/lib/postgresql
+      extdir:    /usr/local/share/postgresql/extension/
       PL/Swift:  /usr/local
-      swift:     4.0.3
+      swift:     5.0.1
+      tools:     5.0
     
     ERROR: Missing extension control file: PLSwift.control
     ERROR: Missing setup file: 

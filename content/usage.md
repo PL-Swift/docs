@@ -26,8 +26,9 @@ $ tree
 .
 ├── Package.swift
 ├── Sources
-│   ├── base36-ext.swift
-│   └── base36.swift
+│   └── helloswiftpl
+│       ├── base36-ext.swift
+│       └── base36.swift
 ├── base36--0.0.1.sql
 └── base36.control
 
@@ -44,7 +45,7 @@ let package = Package(
 
     dependencies: [
       .Package(url: "https://github.com/PL-Swift/PLSwift.git", 
-               majorVersion: 0)
+               from: "0.5.1")
     ]
 )
 ```
@@ -183,15 +184,14 @@ build results into an PostgreSQL extension shared library (`base36.so`).
 
 ```
 $ swift pl build
-Fetching https://github.com/PL-Swift/PLSwift.git
 Fetching https://github.com/PL-Swift/CPLSwift.git
-Cloning https://github.com/PL-Swift/PLSwift.git
-Resolving https://github.com/PL-Swift/PLSwift.git at 0.0.4
+Fetching https://github.com/PL-Swift/PLSwift.git
+Completed resolution in 2.83s
 Cloning https://github.com/PL-Swift/CPLSwift.git
-Resolving https://github.com/PL-Swift/CPLSwift.git at 0.0.1
-Compile Swift Module 'PLSwift' (3 sources)
-Compile Swift Module 'base36' (2 sources)
-
+Resolving https://github.com/PL-Swift/CPLSwift.git at 1.0.3
+Cloning https://github.com/PL-Swift/PLSwift.git
+Resolving https://github.com/PL-Swift/PLSwift.git at 0.5.1
+[2/2] Compiling Swift Module 'base36' (2 sources)
 $ ls -hl .build/base36.so
 -rwxr-xr-x  1 helge  staff    74K Jan  6 14:52 .build/base36.so
 ```
